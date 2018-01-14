@@ -1,0 +1,21 @@
+QUERY PARA LA VISTA DE ROLES EN USUARIOS
+------------------------------------------------
+
+select t1.id_us, t1.nombre, t1.cuenta, t2.nombre
+from
+(select id_us, nombre, cuenta, id_rolf from usuarios where id_rolf = 1 or id_rolf = 2 and status = 'Activo 'order by nombre) as t1
+inner join
+(select id_rol, nombre from roles) as t2
+on
+t1.id_rolf = t2.id_rol
+
+--------------------------------------------------
+QUERY PARA BUSCAR USUARIOS CON TXT
+
+select t1.id_us, t1.nombre, t1.cuenta, t2.nombre
+from
+(select id_us, nombre, cuenta, id_rolf from usuarios where status = 'Activo' and id_rolf <= 2 and nombre like ('%ev%') order by id_us) as t1
+inner join
+(select id_rol, nombre from roles) as t2
+on
+t1.id_rolf = t2.id_rol
